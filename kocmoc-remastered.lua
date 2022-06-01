@@ -438,17 +438,17 @@ function killmobs()
             if v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
                 if v.Name:match("Werewolf") then
                     monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
-                    warn("kill: "..v.Name)
                     mfd = game:GetService("Workspace").FlowerZones["Pumpkin Patch"]
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
-                    task.wait(10)
+                    task.wait(14)
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 elseif v.Name:match("ForestMantis1") then
-                    warn("kill: "..v.Name)
                     mfd = game:GetService("Workspace").FlowerZones["Cactus Field"]
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
                     task.wait(10)
                     monsterpart = v.Territory.Value
+                elseif v.Name:match("Spider") then
+                    mfd = game:GetService("Workspace").FlowerZones["Spider Field"]
                 elseif v.Name:match("Mushroom") then
                     monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
                 else
@@ -457,6 +457,11 @@ function killmobs()
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible or autokillmobs == false
                 for i = 1, 4 do gettoken(monsterpart.Position) end
+                if v.Name:match("Werewolf") or v.Name:match("Spider") then
+                    task.wait(1)
+                    api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
+                    for i = 1, 4 do gettoken(monsterpart.Position) end
+                end
             end
         end
     end
