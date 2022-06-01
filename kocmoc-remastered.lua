@@ -451,6 +451,7 @@ function killmobs()
                     warn("kill 000: "..v.Name)
                     mfd = game:GetService("Workspace").FlowerZones["Spider Field"]
                     warn("kill 001: "..v.Name)
+                    monsterpart = v.Territory.Value
                 elseif v.Name:match("Mushroom") then
                     monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
                 else
