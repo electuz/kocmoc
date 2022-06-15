@@ -1589,6 +1589,7 @@ task.spawn(function()
             temptable.started.vicious = true
             disableall()
 			local vichumanoid = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+            maskequip("Demon Mask")
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
 					if string.find(v.Name, "Vicious") then
@@ -1618,6 +1619,7 @@ task.spawn(function() while task.wait() do
         temptable.started.windy = true
         wlvl = "" aw = false awb = false -- some variable for autowindy, yk?
         disableall()
+        maskequip("Demon Mask")
         while kocmoc.toggles.killwindy and temptable.detected.windy do
             if not aw then
                 for i,v in pairs(workspace.Monsters:GetChildren()) do
