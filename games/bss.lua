@@ -457,6 +457,7 @@ function killmobs()
                 else
                     monsterpart = v.Territory.Value
                 end
+                maskequip("Demon Mask")
                 api.humanoidrootpart().CFrame = monsterpart.CFrame
                 repeat api.humanoidrootpart().CFrame = monsterpart.CFrame avoidmob() task.wait(1) until v:FindFirstChild("TimerLabel", true).Visible or kocmoc.toggles.autokillmobs == false
                 for i = 1, 4 do gettoken(monsterpart.Position) end
