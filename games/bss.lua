@@ -466,6 +466,7 @@ function killmobs()
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 end
+                maskequip("Gummy Mask")
             end
         end
     end
@@ -1610,6 +1611,7 @@ task.spawn(function()
 			task.wait(1)
 			temptable.float = false
             temptable.started.vicious = false
+            maskequip("Gummy Mask")
 		end
 	end
 end)
@@ -1645,6 +1647,7 @@ task.spawn(function() while task.wait() do
         enableall()
         temptable.float = false
         temptable.started.windy = false
+        maskequip("Gummy Mask")
     end
 end end)
 
