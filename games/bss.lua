@@ -1597,8 +1597,7 @@ task.spawn(function() while task.wait() do
             end
         end 
     end 
-end 
-end)
+end end)
 
 task.spawn(function()
     while task.wait(1) do
