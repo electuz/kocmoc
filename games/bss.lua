@@ -1504,6 +1504,7 @@ task.spawn(function() while task.wait() do
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
                         temptable.started.mondo = true
+                        maskequip("Demon Mask")
                         while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and kocmoc.toggles.killmondo do
                             disableall()
                             game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
@@ -1520,6 +1521,7 @@ task.spawn(function() while task.wait() do
                         api.tween(2, fieldpos) 
                         temptable.started.mondo = false
                     end
+                    maskequip("Gummy Mask")
                 end
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(0.1, fieldpos)
