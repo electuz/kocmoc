@@ -125,6 +125,7 @@ getgenv().temptable = {
         if lasttouched ~= v then
             if v.Parent.Name == "FlowerZones" then
                 if v:FindFirstChild("ColorGroup") then
+                    warn("get ColorGroup: "..tostring(v.ColorGroup.Value))
                     if tostring(v.ColorGroup.Value) == "Red" then
                         maskequip("Demon Mask")
                     elseif tostring(v.ColorGroup.Value) == "Blue" then
@@ -430,6 +431,7 @@ function makesprinklers()
         game.ReplicatedStorage.Events.PlayerActivesCommand:FireServer({["Name"] = "Sprinkler Builder"})
         if e ~= 1 then api.humanoid().JumpPower = k task.wait(1) end
     end
+    -- warn("set sp: "..v.Name)
 end
 
 function killmobs()
@@ -448,9 +450,7 @@ function killmobs()
                     task.wait(10)
                     monsterpart = v.Territory.Value
                 elseif v.Name:match("Spider") then
-                    warn("kill 000: "..v.Name)
                     mfd = game:GetService("Workspace").FlowerZones["Spider Field"]
-                    warn("kill 001: "..v.Name)
                     monsterpart = v.Territory.Value
                 elseif v.Name:match("Mushroom") then
                     monsterpart = game:GetService("Workspace").Territories.MushroomZone.Part
