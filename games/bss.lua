@@ -1424,6 +1424,7 @@ task.spawn(function() while task.wait() do
         pollenpercentage = pollencount/maxpollen*100
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         
+        -- warn("v.Parent.Name = FlowerZones: "..tostring(v.ColorGroup.Value))
         if kocmoc.toggles.autouseconvertors == true then
             if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
                 if not temptable.consideringautoconverting then
