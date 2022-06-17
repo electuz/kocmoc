@@ -37,6 +37,7 @@ for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
         v.Parent.Parent:Destroy()
     end
 end
+
 getgenv().temptable = {
     version = "3.2.9",
     blackfield = "Sunflower Field",
@@ -124,8 +125,9 @@ getgenv().temptable = {
     ['touchedfunction'] = function(v)
         if lasttouched ~= v then
             if v.Parent.Name == "FlowerZones" then
+                warn("v.Parent.Name = FlowerZones: "..tostring(v.ColorGroup.Value))
                 if v:FindFirstChild("ColorGroup") then
-                    warn("get ColorGroup: "..tostring(v.ColorGroup.Value))
+                    warn("FindFirstChild(): "..tostring(v.ColorGroup.Value))
                     if tostring(v.ColorGroup.Value) == "Red" then
                         maskequip("Demon Mask")
                     elseif tostring(v.ColorGroup.Value) == "Blue" then
@@ -136,6 +138,8 @@ getgenv().temptable = {
                 end
                 lasttouched = v
             end
+        else
+            warn("ColorGroup: "..tostring(v.ColorGroup.Value))
         end
     end,
     runningfor = 0,
@@ -145,6 +149,7 @@ getgenv().temptable = {
         return coordd
     end
 }
+
 local planterst = {
     plantername = {},
     planterid = {}
@@ -197,7 +202,7 @@ local MasksTable = {}
 for i,v in pairs(AccessoryTypes) do
     if string.find(i,"Mask") then
         if i ~= "Honey Mask" then
-        table.insert(MasksTable,i)
+            table.insert(MasksTable,i)
         end
     end
 end
@@ -1420,43 +1425,43 @@ task.spawn(function() while task.wait() do
         fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
         
         if kocmoc.toggles.autouseconvertors == true then
-        if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+            if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
                 if not temptable.consideringautoconverting then
-                temptable.consideringautoconverting = true
-                spawn(function()
-                    wait(kocmoc.vars.autoconvertWaitTime)
-                    if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
-                        useConvertors()
-                    end
-                    temptable.consideringautoconverting = false
-                end)
+                    temptable.consideringautoconverting = true
+                    spawn(function()
+                        wait(kocmoc.vars.autoconvertWaitTime)
+                        if tonumber(pollenpercentage) >= (kocmoc.vars.convertat - (kocmoc.vars.autoconvertWaitTime)) then
+                            useConvertors()
+                        end
+                        temptable.consideringautoconverting = false
+                    end)
                 end
             end
         end
         
         if kocmoc.toggles.autofarm then
-        if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
-            for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
-                if v.Name == "Description" then
-                    if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
-                        pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
-                        text = v.Text
-                        if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
-                            d = api.returnvalue(fieldstable, text)
-                            fieldselected = game:GetService("Workspace").FlowerZones[d]
-                            break
-                        elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
-                            d = api.returnvalue(pollentypes, text)
-                            if d == "Blue Flowers" or d == "Blue Pollen" then
-                                fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
+            if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
+                for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
+                    if v.Name == "Description" then
+                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" and not string.find(v.Text, "Puffshroom") then
+                            pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
+                            text = v.Text
+                            if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
+                                d = api.returnvalue(fieldstable, text)
+                                fieldselected = game:GetService("Workspace").FlowerZones[d]
                                 break
-                            elseif d == "White Flowers" or d == "White Pollen" then
-                                fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.white]
-                                break
-                            elseif d == "Red Flowers" or d == "Red Pollen" then
-                                fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
-                                break
-                            end
+                            elseif api.returnvalue(pollentypes, text) and not string.find(v.Text, 'Complete!') then
+                                d = api.returnvalue(pollentypes, text)
+                                if d == "Blue Flowers" or d == "Blue Pollen" then
+                                    fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.blue]
+                                    break
+                                elseif d == "White Flowers" or d == "White Pollen" then
+                                    fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.white]
+                                    break
+                                elseif d == "Red Flowers" or d == "Red Pollen" then
+                                    fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
+                                    break
+                                end
                         end
                     end
                 end
@@ -1499,7 +1504,9 @@ task.spawn(function() while task.wait() do
                 api.tween(2, fieldpos)
                 task.wait(2)
                 temptable.tokensfarm = true
-                if kocmoc.toggles.autosprinkler then makesprinklers() end
+                if kocmoc.toggles.autosprinkler then 
+                    makesprinklers() 
+                end
             else
                 if kocmoc.toggles.killmondo then
                     while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
@@ -1526,7 +1533,9 @@ task.spawn(function() while task.wait() do
                 if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                     api.tween(0.1, fieldpos)
                     task.wait(2)
-                    if kocmoc.toggles.autosprinkler then makesprinklers() end
+                    if kocmoc.toggles.autosprinkler then 
+                        makesprinklers() 
+                    end
                 end
                 getprioritytokens()
                 if kocmoc.toggles.avoidmobs then avoidmob() end
