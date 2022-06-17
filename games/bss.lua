@@ -1416,8 +1416,8 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
 end)
 
 task.spawn(function() while task.wait() do
-        temptable.magnitude = 50
-        if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
+    temptable.magnitude = 50
+    if game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true) then
         local pollenprglbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
         maxpollen = tonumber(pollenprglbl.Text:match("%d+$"))
         local pollencount = game.Players.LocalPlayer.CoreStats.Pollen.Value
@@ -1462,138 +1462,143 @@ task.spawn(function() while task.wait() do
                                     fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.bestfields.red]
                                     break
                                 end
+                            end
                         end
                     end
                 end
-            end
-        else
-            fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
-        end
-        fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
-        fieldposition = fieldselected.Position
-        if temptable.sprouts.detected and temptable.sprouts.coords and kocmoc.toggles.farmsprouts then
-            fieldposition = temptable.sprouts.coords.Position
-            fieldpos = temptable.sprouts.coords
-        end
-        if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
-            if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
-            elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
-                temptable.magnitude = 25 
-                fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
             else
-                temptable.magnitude = 25 
-                fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
-                fieldposition = fieldpos.Position
+                fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
             end
-        end
-        
-        if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
-            if not temptable.tokensfarm then
-                api.tween(2, fieldpos)
-                task.wait(2)
-                temptable.tokensfarm = true
-                if kocmoc.toggles.autosprinkler then 
-                    makesprinklers() 
+            
+            fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
+            fieldposition = fieldselected.Position
+            if temptable.sprouts.detected and temptable.sprouts.coords and kocmoc.toggles.farmsprouts then
+                fieldposition = temptable.sprouts.coords.Position
+                fieldpos = temptable.sprouts.coords
+            end
+
+            if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+                if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
+                    temptable.magnitude = 25 
+                    fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                    fieldposition = fieldpos.Position
+                elseif api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms) then
+                    temptable.magnitude = 25 
+                    fieldpos = api.partwithnamepart("Legendary", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                    fieldposition = fieldpos.Position
+                elseif api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms) then
+                    temptable.magnitude = 25 
+                    fieldpos = api.partwithnamepart("Epic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                    fieldposition = fieldpos.Position
+                elseif api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms) then
+                    temptable.magnitude = 25 
+                    fieldpos = api.partwithnamepart("Rare", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                    fieldposition = fieldpos.Position
+                else
+                    temptable.magnitude = 25 
+                    fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
+                    fieldposition = fieldpos.Position
                 end
-            else
-                if kocmoc.toggles.killmondo then
-                    while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
-                        temptable.started.mondo = true
-                        maskequip("Demon Mask")
-                        while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and kocmoc.toggles.killmondo do
-                            disableall()
-                            game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
-                            mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
-                            api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
-                            task.wait(1)
-                            temptable.float = true
-                        end
-                        task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
-                        for i = 0, 50 do 
-                            gettoken(CFrame.new(73.2, 176.35, -167).Position) 
-                        end 
-                        enableall() 
-                        api.tween(2, fieldpos) 
-                        temptable.started.mondo = false
-                    end
-                    maskequip("Gummy Mask")
-                end
-                if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
-                    api.tween(0.1, fieldpos)
+            end
+            
+            if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
+                if not temptable.tokensfarm then
+                    api.tween(2, fieldpos)
                     task.wait(2)
+                    temptable.tokensfarm = true
                     if kocmoc.toggles.autosprinkler then 
                         makesprinklers() 
                     end
+                else
+                    if kocmoc.toggles.killmondo then
+                        while kocmoc.toggles.killmondo and game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and not temptable.started.vicious and not temptable.started.monsters do
+                            temptable.started.mondo = true
+                            maskequip("Demon Mask")
+                            while game.Workspace.Monsters:FindFirstChild("Mondo Chick (Lvl 8)") and kocmoc.toggles.killmondo do
+                                disableall()
+                                game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
+                                mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
+                                api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
+                                task.wait(1)
+                                temptable.float = true
+                            end
+                            task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
+                            for i = 0, 50 do 
+                                gettoken(CFrame.new(73.2, 176.35, -167).Position) 
+                            end 
+                            enableall() 
+                            api.tween(2, fieldpos) 
+                            temptable.started.mondo = false
+                        end
+                        maskequip("Gummy Mask")
+                    end
+                    if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
+                        api.tween(0.1, fieldpos)
+                        task.wait(2)
+                        if kocmoc.toggles.autosprinkler then 
+                            makesprinklers() 
+                        end
+                    end
+                    getprioritytokens()
+                    if kocmoc.toggles.avoidmobs then avoidmob() end
+                    if kocmoc.toggles.farmclosestleaf then closestleaf() end
+                    if kocmoc.toggles.farmbubbles then getbubble() end
+                    if kocmoc.toggles.farmclouds then getcloud() end
+                    if kocmoc.toggles.farmunderballoons then getballoons() end
+                    if not kocmoc.toggles.donotfarmtokens and done then gettoken() end
+                    if not kocmoc.toggles.farmflower then getflower() end
                 end
-                getprioritytokens()
-                if kocmoc.toggles.avoidmobs then avoidmob() end
-                if kocmoc.toggles.farmclosestleaf then closestleaf() end
-                if kocmoc.toggles.farmbubbles then getbubble() end
-                if kocmoc.toggles.farmclouds then getcloud() end
-                if kocmoc.toggles.farmunderballoons then getballoons() end
-                if not kocmoc.toggles.donotfarmtokens and done then gettoken() end
-                if not kocmoc.toggles.farmflower then getflower() end
-            end
-        elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then
-            if not kocmoc.toggles.disableconversion then
-            temptable.tokensfarm = false
-            api.tween(2, game:GetService("Players").LocalPlayer.SpawnPos.Value * CFrame.fromEulerAnglesXYZ(0, 110, 0) + Vector3.new(0, 0, 9))
-            task.wait(2)
-            temptable.converting = true
-            repeat
-                converthoney()
-            until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
-            if kocmoc.toggles.convertballoons and gethiveballoon() then
-                task.wait(6)
-                repeat
-                    task.wait()
-                    converthoney()
-                until gethiveballoon() == false or not kocmoc.toggles.convertballoons
-            end
-            temptable.converting = false
-            temptable.act = temptable.act + 1
-            task.wait(6)
-            if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
-            if kocmoc.toggles.autoquest then makequests() end
-            if kocmoc.toggles.autoplanters then collectplanters() end
-            if kocmoc.toggles.autokillmobs then 
-                if temptable.act >= kocmoc.vars.monstertimer then
-                    temptable.started.monsters = true
-                    temptable.act = 0
-                    killmobs() 
-                    temptable.started.monsters = false
+            elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then
+                if not kocmoc.toggles.disableconversion then
+                    temptable.tokensfarm = false
+                    api.tween(2, game:GetService("Players").LocalPlayer.SpawnPos.Value * CFrame.fromEulerAnglesXYZ(0, 110, 0) + Vector3.new(0, 0, 9))
+                    task.wait(2)
+                    temptable.converting = true
+                    repeat
+                        converthoney()
+                    until game.Players.LocalPlayer.CoreStats.Pollen.Value == 0
+                    if kocmoc.toggles.convertballoons and gethiveballoon() then
+                        task.wait(6)
+                        repeat
+                            task.wait()
+                            converthoney()
+                        until gethiveballoon() == false or not kocmoc.toggles.convertballoons
+                    end
+                    temptable.converting = false
+                    temptable.act = temptable.act + 1
+                    task.wait(6)
+                    if kocmoc.toggles.autoant and not game:GetService("Workspace").Toys["Ant Challenge"].Busy.Value and rtsg().Eggs.AntPass > 0 then farmant() end
+                    if kocmoc.toggles.autoquest then makequests() end
+                    if kocmoc.toggles.autoplanters then collectplanters() end
+                    if kocmoc.toggles.autokillmobs then 
+                        if temptable.act >= kocmoc.vars.monstertimer then
+                            temptable.started.monsters = true
+                            temptable.act = 0
+                            killmobs() 
+                            temptable.started.monsters = false
+                        end
+                    end
+                    if kocmoc.vars.resetbeeenergy then
+                        --rconsoleprint("Act2:-"..tostring(temptable.act2))
+                        if temptable.act2 >= kocmoc.vars.resettimer then
+                            temptable.started.monsters = true
+                            temptable.act2 = 0
+                            repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
+                            workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
+                            wait(6.5)
+                            repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+                            workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
+                            wait(6.5)
+                            repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
+                            temptable.started.monsters = false
+                        end
+                    end
                 end
             end
-            if kocmoc.vars.resetbeeenergy then
-            --rconsoleprint("Act2:-"..tostring(temptable.act2))
-            if temptable.act2 >= kocmoc.vars.resettimer then
-                temptable.started.monsters = true
-                temptable.act2 = 0
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name) and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid") and workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("Humanoid").Health > 0
-                workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-                workspace:FindFirstChild(game.Players.LocalPlayer.Name):BreakJoints()
-                wait(6.5)
-                repeat wait() until workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-                temptable.started.monsters = false
-            end
-        end
-        end
-    end
-end end end end)
+        end 
+    end 
+end 
+end)
 
 task.spawn(function()
     while task.wait(1) do
