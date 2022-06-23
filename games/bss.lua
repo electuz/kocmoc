@@ -127,7 +127,7 @@ getgenv().temptable = {
             if v.Parent.Name == "FlowerZones" then
                 warn("v.Parent.Name = FlowerZones: "..tostring(v.ColorGroup.Value))
                 if v:FindFirstChild("ColorGroup") then
-                    warn("FindFirstChild(): "..tostring(v.ColorGroup.Value))
+                    -- warn("FindFirstChild(): "..tostring(v.ColorGroup.Value))
                     if tostring(v.ColorGroup.Value) == "Red" then
                         maskequip("Demon Mask")
                     elseif tostring(v.ColorGroup.Value) == "Blue" then
@@ -139,7 +139,7 @@ getgenv().temptable = {
                 lasttouched = v
             end
         else
-            warn("ColorGroup: "..tostring(v.ColorGroup.Value))
+            warn("ColorGroup: "))
         end
     end,
     runningfor = 0,
@@ -445,9 +445,15 @@ function killmobs()
             if v.Name ~= "Commando Chick" and v.Name ~= "CoconutCrab" and v.Name ~= "StumpSnail" and v.Name ~= "TunnelBear" and v.Name ~= "King Beetle Cave" and not v.Name:match("CaveMonster") and not v:FindFirstChild("TimerLabel", true).Visible then
                 if v.Name:match("Werewolf") then
                     monsterpart = game:GetService("Workspace").Territories.WerewolfPlateau.w
+                    mfd = game:GetService("Workspace").FlowerZones["Spider Field"]
+                    api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
+                    task.wait(3)
+                    mfd = game:GetService("Workspace").FlowerZones["Cactus Field"]
+                    api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
+                    task.wait(3)
                     mfd = game:GetService("Workspace").FlowerZones["Pumpkin Patch"]
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
-                    task.wait(14)
+                    task.wait(3)
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 elseif v.Name:match("ForestMantis1") then
                     mfd = game:GetService("Workspace").FlowerZones["Cactus Field"]
@@ -471,6 +477,7 @@ function killmobs()
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 end
+                for i = 1, 4 do gettoken(monsterpart.Position) end
                 maskequip("Gummy Mask")
             end
         end
