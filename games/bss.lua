@@ -139,7 +139,7 @@ getgenv().temptable = {
                 lasttouched = v
             end
         else
-            warn("ColorGroup: "))
+            warn("ColorGroup: ")
         end
     end,
     runningfor = 0,
