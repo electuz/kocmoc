@@ -1587,7 +1587,7 @@ task.spawn(function() while task.wait() do
                                 ethmask = "Gummy Mask"
                                 maskequip("Gummy Mask")
                             end
-                            warn("fieldselected "..fieldselected.Name.." "..ethmask)
+                            -- warn("fieldselected "..fieldselected.Name.." "..ethmask)
                             makesprinklers() 
                         end
                     end
