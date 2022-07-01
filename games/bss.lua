@@ -1484,10 +1484,6 @@ task.spawn(function() while task.wait() do
                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
             end
             
-            -- v in game:GetService("Workspace").FlowerZones:GetChildren()
-            -- v.Name
-            -- v:FindFirstChild("ColorGroup").Value
-            warn("fieldselected "..fieldselected.Name)
             fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
             fieldposition = fieldselected.Position
             if temptable.sprouts.detected and temptable.sprouts.coords and kocmoc.toggles.farmsprouts then
@@ -1525,6 +1521,18 @@ task.spawn(function() while task.wait() do
                     task.wait(2)
                     temptable.tokensfarm = true
                     if kocmoc.toggles.autosprinkler then 
+                        -- v in game:GetService("Workspace").FlowerZones:GetChildren()
+                        -- v.Name
+                        -- v:FindFirstChild("ColorGroup").Value
+                        -- warn("fieldselected "..fieldselected.Name) is OK OK OK
+                        if tostring(fieldselected.ColorGroup.Value) ==  "Red" then
+                            maskequip("Demon Mask")
+                        elseif tostring(fieldselected.ColorGroup.Value) == "Blue" then
+                            maskequip("Diamond Mask")
+                        else
+                            maskequip("Gummy Mask")
+                        end
+
                         makesprinklers() 
                     end
                 else
