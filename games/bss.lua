@@ -25,6 +25,7 @@ local done = true
 local hi = false
 local Items = require(game:GetService("ReplicatedStorage").EggTypes).GetTypes()
 local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
+local ethmask = "Gummy Mask"
 
 hives = game.Workspace.Honeycombs:GetChildren() for i = #hives, 1, -1 do  v = game.Workspace.Honeycombs:GetChildren()[i] if v.Owner.Value == nil then game.ReplicatedStorage.Events.ClaimHive:FireServer(v.HiveID.Value) end end
 
@@ -162,7 +163,7 @@ if temptable.honeystart == 0 then temptable.honeystart = statstable.Totals.Honey
 for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do if v.Name == "TimerAttachment" then v.Name = "Attachment" end end
 for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do if v.Name == "RoseBush" then v.Name = "ScorpionBush" elseif v.Name == "RoseBush2" then v.Name = "ScorpionBush2" end end
 for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then if v:FindFirstChild("ColorGroup").Value == "Red" then table.insert(temptable.redfields, v.Name) elseif v:FindFirstChild("ColorGroup").Value == "Blue" then table.insert(temptable.bluefields, v.Name) end else table.insert(temptable.whitefields, v.Name) end end
-for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then warn("get ColorGroup: "..v.Name) else warn("can't get ColorGroup: "..v.Name) end end
+for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then warn("get ColorGroup: "..v.Name..v:FindFirstChild("ColorGroup").Value) else warn("can't get ColorGroup: "..v.Name) end end
 local flowertable = {}
 for _,z in next, game:GetService("Workspace").Flowers:GetChildren() do table.insert(flowertable, z.Position) end
 local masktable = {}
@@ -1483,6 +1484,10 @@ task.spawn(function() while task.wait() do
                 fieldselected = game:GetService("Workspace").FlowerZones[kocmoc.vars.field]
             end
             
+            -- v in game:GetService("Workspace").FlowerZones:GetChildren()
+            -- v.Name
+            -- v:FindFirstChild("ColorGroup").Value
+            warn("fieldselected "..fieldselected.Name)
             fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
             fieldposition = fieldselected.Position
             if temptable.sprouts.detected and temptable.sprouts.coords and kocmoc.toggles.farmsprouts then
