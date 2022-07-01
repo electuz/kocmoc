@@ -1533,12 +1533,15 @@ task.spawn(function() while task.wait() do
                             elseif tostring(fieldselected.ColorGroup.Value) == "Blue" then
                                 ethmask = "Diamond Mask"
                                 maskequip("Diamond Mask")
+                            else
+                                ethmask = "Gummy Mask"
+                                maskequip("Gummy Mask")
                             end
                         else
                             ethmask = "Gummy Mask"
                             maskequip("Gummy Mask")
                         end
-
+                        warn("fieldselected "..fieldselected.Name.." "..ethmask)
                         makesprinklers() 
                     end
                 else
