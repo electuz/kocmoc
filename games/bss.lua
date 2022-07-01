@@ -484,7 +484,8 @@ function killmobs()
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 end
                 for i = 1, 4 do gettoken(monsterpart.Position) end
-                maskequip("Gummy Mask")
+                -- maskequip("Gummy Mask")
+                maskequip(ethmask)
             end
         end
     end
@@ -1525,11 +1526,16 @@ task.spawn(function() while task.wait() do
                         -- v.Name
                         -- v:FindFirstChild("ColorGroup").Value
                         -- warn("fieldselected "..fieldselected.Name) is OK OK OK
-                        if tostring(fieldselected.ColorGroup.Value) ==  "Red" then
-                            maskequip("Demon Mask")
-                        elseif tostring(fieldselected.ColorGroup.Value) == "Blue" then
-                            maskequip("Diamond Mask")
+                        if fieldselected:FindFirstChild("ColorGroup") then
+                            if tostring(fieldselected.ColorGroup.Value) ==  "Red" then
+                                ethmask = "Demon Mask"
+                                maskequip("Demon Mask")
+                            elseif tostring(fieldselected.ColorGroup.Value) == "Blue" then
+                                ethmask = "Diamond Mask"
+                                maskequip("Diamond Mask")
+                            end
                         else
+                            ethmask = "Gummy Mask"
                             maskequip("Gummy Mask")
                         end
 
@@ -1556,7 +1562,8 @@ task.spawn(function() while task.wait() do
                             api.tween(2, fieldpos) 
                             temptable.started.mondo = false
                         end
-                        maskequip("Gummy Mask")
+                        -- maskequip("Gummy Mask")
+                        maskequip(ethmask)
                     end
                     if (fieldposition-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > temptable.magnitude then
                         api.tween(0.1, fieldpos)
@@ -1652,7 +1659,8 @@ task.spawn(function()
 			task.wait(1)
 			temptable.float = false
             temptable.started.vicious = false
-            maskequip("Gummy Mask")
+            -- maskequip("Gummy Mask")
+            maskequip(ethmask)
 		end
 	end
 end)
@@ -1688,7 +1696,8 @@ task.spawn(function() while task.wait() do
         enableall()
         temptable.float = false
         temptable.started.windy = false
-        maskequip("Gummy Mask")
+        -- maskequip("Gummy Mask")
+        maskequip(ethmask)
     end
 end end)
 
