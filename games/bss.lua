@@ -1572,6 +1572,22 @@ task.spawn(function() while task.wait() do
                         api.tween(0.1, fieldpos)
                         task.wait(2)
                         if kocmoc.toggles.autosprinkler then 
+                            if fieldselected:FindFirstChild("ColorGroup") then
+                                if tostring(fieldselected.ColorGroup.Value) ==  "Red" then
+                                    ethmask = "Demon Mask"
+                                    maskequip("Demon Mask")
+                                elseif tostring(fieldselected.ColorGroup.Value) == "Blue" then
+                                    ethmask = "Diamond Mask"
+                                    maskequip("Diamond Mask")
+                                else
+                                    ethmask = "Gummy Mask"
+                                    maskequip("Gummy Mask")
+                                end
+                            else
+                                ethmask = "Gummy Mask"
+                                maskequip("Gummy Mask")
+                            end
+                            warn("fieldselected "..fieldselected.Name.." "..ethmask)
                             makesprinklers() 
                         end
                     end
