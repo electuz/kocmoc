@@ -1493,6 +1493,7 @@ task.spawn(function() while task.wait() do
             end
 
             if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
+                gettoken()
                 if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                     temptable.magnitude = 25 
                     fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
