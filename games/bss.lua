@@ -1515,6 +1515,7 @@ task.spawn(function() while task.wait() do
                     fieldpos = api.getbiggestmodel(game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
                     fieldposition = fieldpos.Position
                 end
+                gettoken()
             end
             
             if (tonumber(pollenpercentage) < tonumber(kocmoc.vars.convertat)) or (kocmoc.toggles.disableconversion == true) then
