@@ -26,6 +26,7 @@ local hi = false
 local Items = require(game:GetService("ReplicatedStorage").EggTypes).GetTypes()
 local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
 local ethmask = "Gummy Mask"
+local fcross = false
 
 hives = game.Workspace.Honeycombs:GetChildren() for i = #hives, 1, -1 do  v = game.Workspace.Honeycombs:GetChildren()[i] if v.Owner.Value == nil then game.ReplicatedStorage.Events.ClaimHive:FireServer(v.HiveID.Value) end end
 
@@ -1422,8 +1423,9 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
         elseif v.Name == "Crosshair" and v ~= nil and v.BrickColor ~= BrickColor.new("Forest green") and not temptable.started.ant and v.BrickColor ~= BrickColor.new("Flint") and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and kocmoc.toggles.autofarm and kocmoc.toggles.collectcrosshairs and not temptable.converting then
             if #temptable.crosshairs <= 3 then
                 table.insert(temptable.crosshairs, v)
+                fcross = true
                 getcrosshairs(v)
-                gettoken()
+                -- gettoken()
             end
         end
     end
@@ -1543,7 +1545,9 @@ task.spawn(function() while task.wait() do
                             ethmask = "Gummy Mask"
                             maskequip("Gummy Mask")
                         end
-                        warn("fieldselected "..fieldselected.Name.." "..ethmask)
+                        -- warn("fieldselected "..fieldselected.Name.." "..ethmask)
+                        fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
+                        fieldposition = fieldselected.Position
                         makesprinklers() 
                     end
                 else
