@@ -1425,7 +1425,7 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
                 table.insert(temptable.crosshairs, v)
                 fcross = true
                 getcrosshairs(v)
-                -- gettoken()
+                gettoken()
             end
         end
     end
@@ -1545,9 +1545,8 @@ task.spawn(function() while task.wait() do
                             ethmask = "Gummy Mask"
                             maskequip("Gummy Mask")
                         end
-                        -- warn("fieldselected "..fieldselected.Name.." "..ethmask)
-                        fieldpos = CFrame.new(fieldselected.Position.X, fieldselected.Position.Y+3, fieldselected.Position.Z)
-                        fieldposition = fieldselected.Position
+                        -- 
+                        -- warn("hive: fieldselected "..fieldselected.Name.." "..ethmask)
                         makesprinklers() 
                     end
                 else
