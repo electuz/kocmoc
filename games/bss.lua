@@ -1577,9 +1577,9 @@ task.spawn(function() while task.wait() do
                                 disableall()
                                 game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = false 
                                 mondopition = game.Workspace.Monsters["Mondo Chick (Lvl 8)"].Head.Position
-                                api.tween(1, CFrame.new(mondopition.x, mondopition.y - 60, mondopition.z))
+                                api.tween(1, CFrame.new(mondopition.x, mondopition.y, mondopition.z - 6))
                                 task.wait(1)
-                                temptable.float = true
+                                temptable.float = false
                             end
                             task.wait(.5) game:GetService("Workspace").Map.Ground.HighBlock.CanCollide = true temptable.float = false api.tween(.5, CFrame.new(73.2, 176.35, -167)) task.wait(1)
                             for i = 0, 50 do 
@@ -1695,7 +1695,7 @@ task.spawn(function()
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
                     while kocmoc.toggles.killvicious and temptable.detected.vicious do task.wait() if string.find(v.Name, "Vicious") then
-                        for i=1, 4 do temptable.float = true vichumanoid.CFrame = CFrame.new(v.Position.x+10, v.Position.y, v.Position.z) task.wait(.3)
+                        for i=1, 4 do temptable.float = false vichumanoid.CFrame = CFrame.new(v.Position.x, v.Position.y, v.Position.z) task.wait(.3)
                         end
                     end end
                 end
@@ -1735,7 +1735,7 @@ task.spawn(function() while task.wait() do
             end
             if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
             if awb and temptable.windy.Name == "Windy" then
-                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
+                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = false task.wait()
             end
         end 
         enableall()
