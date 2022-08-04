@@ -26,7 +26,7 @@ local hi = false
 local Items = require(game:GetService("ReplicatedStorage").EggTypes).GetTypes()
 local v1 = require(game.ReplicatedStorage.ClientStatCache):Get();
 local ethmask = "Gummy Mask"
-local fcross = false
+local fcrossh = false
 
 hives = game.Workspace.Honeycombs:GetChildren() for i = #hives, 1, -1 do  v = game.Workspace.Honeycombs:GetChildren()[i] if v.Owner.Value == nil then game.ReplicatedStorage.Events.ClaimHive:FireServer(v.HiveID.Value) end end
 
@@ -423,22 +423,26 @@ function gettoken(v3)
 end
 
 function makesprinklers()
-    sprinkler = rtsg().EquippedSprinkler
-    e = 1
-    if sprinkler == "Basic Sprinkler" or sprinkler == "The Supreme Saturator" then
+    if fcrossh then
+        fcrossh = false
+    else
+        sprinkler = rtsg().EquippedSprinkler
         e = 1
-    elseif sprinkler == "Silver Soakers" then
-        e = 2
-    elseif sprinkler == "Golden Gushers" then
-        e = 3
-    elseif sprinkler == "Diamond Drenchers" then
-        e = 4
-    end
-    for i = 1, e do
-        k = api.humanoid().JumpPower
-        if e ~= 1 then api.humanoid().JumpPower = 70 api.humanoid().Jump = true task.wait(.2) end
-        game.ReplicatedStorage.Events.PlayerActivesCommand:FireServer({["Name"] = "Sprinkler Builder"})
-        if e ~= 1 then api.humanoid().JumpPower = k task.wait(1) end
+        if sprinkler == "Basic Sprinkler" or sprinkler == "The Supreme Saturator" then
+            e = 1
+        elseif sprinkler == "Silver Soakers" then
+            e = 2
+        elseif sprinkler == "Golden Gushers" then
+            e = 3
+        elseif sprinkler == "Diamond Drenchers" then
+            e = 4
+        end
+        for i = 1, e do
+            k = api.humanoid().JumpPower
+            if e ~= 1 then api.humanoid().JumpPower = 70 api.humanoid().Jump = true task.wait(.2) end
+            game.ReplicatedStorage.Events.PlayerActivesCommand:FireServer({["Name"] = "Sprinkler Builder"})
+            if e ~= 1 then api.humanoid().JumpPower = k task.wait(1) end
+        end
     end
     -- warn("set sp: "..v.Name)
 end
@@ -1423,9 +1427,10 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
         elseif v.Name == "Crosshair" and v ~= nil and v.BrickColor ~= BrickColor.new("Forest green") and not temptable.started.ant and v.BrickColor ~= BrickColor.new("Flint") and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and kocmoc.toggles.autofarm and kocmoc.toggles.collectcrosshairs and not temptable.converting then
             if #temptable.crosshairs <= 3 then
                 table.insert(temptable.crosshairs, v)
-                fcross = true
+                fcrossh = true
                 getcrosshairs(v)
                 gettoken()
+                -- fcrossh = false
             end
         end
     end
