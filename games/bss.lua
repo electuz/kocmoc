@@ -1424,13 +1424,17 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
             table.insert(temptable.coconuts, v)
             fcrossh = true
             getcoco(v)
+            fcrossh = true
             gettoken()
+            fcrossh = true
         elseif v.Name == "Crosshair" and v ~= nil and v.BrickColor ~= BrickColor.new("Forest green") and not temptable.started.ant and v.BrickColor ~= BrickColor.new("Flint") and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and kocmoc.toggles.autofarm and kocmoc.toggles.collectcrosshairs and not temptable.converting then
             if #temptable.crosshairs <= 3 then
                 table.insert(temptable.crosshairs, v)
                 fcrossh = true
                 getcrosshairs(v)
+                fcrossh = true
                 gettoken()
+                fcrossh = true
                 -- fcrossh = false
             end
         end
