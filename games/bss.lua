@@ -1414,9 +1414,11 @@ task.spawn(function() while task.wait() do
     if kocmoc.toggles.autofarm then
         --if kocmoc.toggles.farmcoco then getcoco() end
         --if kocmoc.toggles.collectcrosshairs then getcrosshairs() end
-        if kocmoc.toggles.farmflame then getflame() end
+        if kocmoc.toggles.farmflame then 
+            getflame() 
+        end
         if kocmoc.toggles.farmfuzzy then 
-            fcrossh = true
+            -- fcrossh = true
             getfuzzy() 
         end
     end
@@ -1426,11 +1428,13 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
     if not temptable.started.vicious and not temptable.started.ant then
         if v.Name == "WarningDisk" and not temptable.started.vicious and kocmoc.toggles.autofarm and not temptable.started.ant and kocmoc.toggles.farmcoco and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and not temptable.converting then
             table.insert(temptable.coconuts, v)
-            fcrossh = true
-            getcoco(v)
-            fcrossh = true
+            if not temptable.detected.vicious then
+                fcrossh = true
+                getcoco(v)
+                fcrossh = true
+            end
             gettoken()
-            fcrossh = true
+            -- fcrossh = true
         elseif v.Name == "Crosshair" and v ~= nil and v.BrickColor ~= BrickColor.new("Forest green") and not temptable.started.ant and v.BrickColor ~= BrickColor.new("Flint") and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and kocmoc.toggles.autofarm and kocmoc.toggles.collectcrosshairs and not temptable.converting then
             if #temptable.crosshairs <= 3 then
                 table.insert(temptable.crosshairs, v)
