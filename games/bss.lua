@@ -319,7 +319,7 @@ getgenv().kocmoc = {
         enablestatuspanel = false,
     },
     vars = {
-        field = "Ant Field",
+        field = "Stump Field",
         convertat = 100,
         farmspeed = 60,
         prefer = "Tokens",
@@ -1428,6 +1428,7 @@ game.Workspace.Particles.ChildAdded:Connect(function(v)
     if not temptable.started.vicious and not temptable.started.ant then
         if v.Name == "WarningDisk" and not temptable.started.vicious and kocmoc.toggles.autofarm and not temptable.started.ant and kocmoc.toggles.farmcoco and (v.Position-api.humanoidrootpart().Position).magnitude < temptable.magnitude and not temptable.converting then
             table.insert(temptable.coconuts, v)
+            -- if not temptable.detected.vicious or  then
             if not temptable.detected.vicious then
                 fcrossh = true
                 getcoco(v)
