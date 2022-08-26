@@ -1514,7 +1514,7 @@ task.spawn(function() while task.wait() do
             end
 
             if kocmoc.toggles.farmpuffshrooms and game.Workspace.Happenings.Puffshrooms:FindFirstChildOfClass("Model") then 
-                gettoken()
+                -- gettoken()
                 if api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms) then
                     temptable.magnitude = 25 
                     fieldpos = api.partwithnamepart("Mythic", game.Workspace.Happenings.Puffshrooms):FindFirstChild("Puffball Stem").CFrame
@@ -1621,8 +1621,10 @@ task.spawn(function() while task.wait() do
                     if kocmoc.toggles.farmbubbles then getbubble() end
                     if kocmoc.toggles.farmclouds then getcloud() end
                     if kocmoc.toggles.farmunderballoons then getballoons() end
+                    if kocmoc.toggles.farmbubbles then getbubble() end
                     if not kocmoc.toggles.donotfarmtokens and done then gettoken() end
                     if not kocmoc.toggles.farmflower then getflower() end
+                    if kocmoc.toggles.farmbubbles then getbubble() end
                 end
             elseif tonumber(pollenpercentage) >= tonumber(kocmoc.vars.convertat) then
                 if not kocmoc.toggles.disableconversion then
