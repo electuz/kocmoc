@@ -276,6 +276,7 @@ getgenv().kocmoc = {
         farmclouds = false,
         killmondo = false,
         killvicious = false,
+        floatover = false,
         loopspeed = false,
         loopjump = false,
         autoquest = false,
@@ -1011,6 +1012,7 @@ mobkill:CreateToggle("Auto Kill Mobs", nil, function(State) kocmoc.toggles.autok
 mobkill:CreateToggle("Avoid Mobs", nil, function(State) kocmoc.toggles.avoidmobs = State end)
 mobkill:CreateToggle("Auto Ant", nil, function(State) kocmoc.toggles.autoant = State end):AddToolTip("You Need Spark Stuff 😋; Goes to Ant Challenge after pollen converting")
 mobkill:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end)
+mobkill:CreateToggle("Float Over", nil, function(State) kocmoc.toggles.floatover = State end)
 
 local serverhopkill = combtab:CreateSection("Serverhopping Combat")
 serverhopkill:CreateButton("Vicious Bee Serverhopper [⚠️][📜]",function() loadstring(game:HttpGet("https://raw.githubusercontent.com/electuz/kocmoc/main/functions/viciousbeeserverhop.lua"))() end):AddToolTip("Serverhops for rouge vicious bees")
@@ -1687,8 +1689,10 @@ task.spawn(function()
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
 					if string.find(v.Name, "Vicious") then
-						api.tween(1,CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(1)
-						api.tween(0.5, CFrame.new(v.Position.x, v.Position.y, v.Position.z)) task.wait(.5)
+						api.tween(1,CFrame.new(v.Position.x+3, v.Position.y, v.Position.z)) task.wait(1)
+						-- gettoken()
+                        temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+						api.tween(0.5, CFrame.new(v.Position.x+3, v.Position.y, v.Position.z)) task.wait(.5)
 					end
 				end
 			end
@@ -1734,6 +1738,7 @@ task.spawn(function() while task.wait() do
                 end
             end
             if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
+            temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
             if awb and temptable.windy.Name == "Windy" then
                 api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = false task.wait()
             end
