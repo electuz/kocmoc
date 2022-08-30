@@ -1691,7 +1691,7 @@ task.spawn(function()
 					if string.find(v.Name, "Vicious") then
 						api.tween(1,CFrame.new(v.Position.x+3, v.Position.y, v.Position.z)) task.wait(1)
 						-- gettoken()
-                        temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+                        for i =1, 5 do gettoken(api.humanoidrootpart().Position) end
 						api.tween(0.5, CFrame.new(v.Position.x+3, v.Position.y, v.Position.z)) task.wait(.5)
 					end
 				end
@@ -1738,7 +1738,7 @@ task.spawn(function() while task.wait() do
                 end
             end
             if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
-            temptable.float = false task.wait(5) for i =1, 5 do gettoken(api.humanoidrootpart().Position) end -- collect tokens :yessir:
+            for i =1, 5 do gettoken(api.humanoidrootpart().Position) end
             if awb and temptable.windy.Name == "Windy" then
                 api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = false task.wait()
             end
