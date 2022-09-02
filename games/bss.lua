@@ -327,7 +327,7 @@ getgenv().kocmoc = {
         walkspeed = 70,
         jumppower = 70,
         npcprefer = "Polar Bear",
-        2ndprefer = "Black Bear",
+        nthprefer = "Black Bear",
         farmtype = "Walk",
         monstertimer = 3,
         autodigmode = "Normal",
@@ -1366,7 +1366,7 @@ fieldsettings:CreateButton("Remove Field From Blacklist", function() table.remov
 fieldsettings:CreateDropdown("Blacklisted Fields", kocmoc.blacklistedfields, function(Option) end)
 local aqs = setttab:CreateSection("Auto Quest Settings")
 aqs:CreateDropdown("Do NPC Quests", {'All Quests', 'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.npcprefer = Option end)
-aqs:CreateDropdown("Do 2nd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.2ndprefer = Option end)
+aqs:CreateDropdown("Do 2nd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.nthprefer = Option end)
 aqs:CreateToggle("Teleport To NPC", nil, function(State) kocmoc.toggles.tptonpc = State end)
 local pts = setttab:CreateSection("Autofarm Priority Tokens")
 pts:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rarename = Value end)
@@ -1483,7 +1483,7 @@ task.spawn(function() while task.wait() do
             if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
                 for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                     if v.Name == "Description" then
-                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.2ndprefer) and not string.find(v.Text, "Puffshroom") then
+                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.nthprefer) and not string.find(v.Text, "Puffshroom") then
                             pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
                             text = v.Text
                             if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
