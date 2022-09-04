@@ -163,8 +163,28 @@ if temptable.honeystart == 0 then temptable.honeystart = statstable.Totals.Honey
 
 for i,v in next, game:GetService("Workspace").MonsterSpawners:GetDescendants() do if v.Name == "TimerAttachment" then v.Name = "Attachment" end end
 for i,v in next, game:GetService("Workspace").MonsterSpawners:GetChildren() do if v.Name == "RoseBush" then v.Name = "ScorpionBush" elseif v.Name == "RoseBush2" then v.Name = "ScorpionBush2" end end
-for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then if v:FindFirstChild("ColorGroup").Value == "Red" then table.insert(temptable.redfields, v.Name) elseif v:FindFirstChild("ColorGroup").Value == "Blue" then table.insert(temptable.bluefields, v.Name) end else table.insert(temptable.whitefields, v.Name) end end
-for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do if v:FindFirstChild("ColorGroup") then warn("get ColorGroup: "..v.Name..v:FindFirstChild("ColorGroup").Value) else warn("can't get ColorGroup: "..v.Name) end end
+for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do 
+    if v:FindFirstChild("ColorGroup") then 
+        if v:FindFirstChild("ColorGroup").Value == "Red" then 
+            table.insert(temptable.redfields, v.Name) 
+        elseif v:FindFirstChild("ColorGroup").Value == "Blue" then 
+            table.insert(temptable.bluefields, v.Name) 
+            if v.Name == "Stump Field" then
+                table.insert(temptable.whitefields, v.Name)
+                table.insert(temptable.redfields, v.Name)
+            end
+        end 
+    else 
+        table.insert(temptable.whitefields, v.Name) 
+    end 
+end
+for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do 
+    if v:FindFirstChild("ColorGroup") then 
+        warn("get ColorGroup: "..v.Name..v:FindFirstChild("ColorGroup").Value) 
+    else 
+        warn("can't get ColorGroup: "..v.Name) 
+    end 
+end
 local flowertable = {}
 for _,z in next, game:GetService("Workspace").Flowers:GetChildren() do table.insert(flowertable, z.Position) end
 local masktable = {}
