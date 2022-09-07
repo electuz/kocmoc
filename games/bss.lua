@@ -42,7 +42,7 @@ end
 
 getgenv().temptable = {
     version = "3.2.9",
-    blackfield = "Sunflower Field",
+    blackfield = "Coconut Field",
     redfields = {},
     bluefields = {},
     whitefields = {},
@@ -169,10 +169,10 @@ for i,v in next, game:GetService("Workspace").FlowerZones:GetChildren() do
             table.insert(temptable.redfields, v.Name) 
         elseif v:FindFirstChild("ColorGroup").Value == "Blue" then 
             table.insert(temptable.bluefields, v.Name) 
-            if v.Name == "Stump Field" then
-                table.insert(temptable.whitefields, v.Name)
-                table.insert(temptable.redfields, v.Name)
-            end
+            -- if v.Name == "Stump Field" then
+            table.insert(temptable.whitefields, v.Name)
+            table.insert(temptable.redfields, v.Name)
+            -- end
         end 
     else 
         table.insert(temptable.whitefields, v.Name) 
@@ -275,8 +275,8 @@ getgenv().kocmoc = {
     rares = {},
     priority = {},
     bestfields = {
-        red = "Pepper Patch",
-        white = "Coconut Field",
+        red = "Stump Field",
+        white = "Stump Field",
         blue = "Stump Field"
     },
     blacklistedfields = {},
