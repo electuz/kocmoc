@@ -347,7 +347,8 @@ getgenv().kocmoc = {
         walkspeed = 70,
         jumppower = 70,
         npcprefer = "Polar Bear",
-        nthprefer = "Black Bear",
+        tndprefer = "Black Bear",
+        trdprefer = "Bucko Bear",
         farmtype = "Walk",
         monstertimer = 3,
         autodigmode = "Normal",
@@ -971,7 +972,7 @@ if string.find(v.Name,"Mob Panel") or string.find(v.Name,"Utility Panel") then
 v.Visible = false end end
 else for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do if string.find(v.Name,"Mob Panel") or string.find(v.Name,"Utility Panel") then v.Visible = true end end end end)
 local farmo = farmtab:CreateSection("Farming")
-local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[1])
+local fielddropdown = farmo:CreateDropdown("Field", fieldstable, function(String) kocmoc.vars.field = String end) fielddropdown:SetOption(fieldstable[17])
 convertatslider = farmo:CreateSlider("Convert At", 0, 100, 100, false, function(Value) kocmoc.vars.convertat = Value end)
 local autofarmtoggle = farmo:CreateToggle("Autofarm [⚙]", nil, function(State) kocmoc.toggles.autofarm = State end) autofarmtoggle:CreateKeybind("Z", function(Key) end)
 farmo:CreateToggle("Autodig", nil, function(State) kocmoc.toggles.autodig = State end)
@@ -1386,7 +1387,8 @@ fieldsettings:CreateButton("Remove Field From Blacklist", function() table.remov
 fieldsettings:CreateDropdown("Blacklisted Fields", kocmoc.blacklistedfields, function(Option) end)
 local aqs = setttab:CreateSection("Auto Quest Settings")
 aqs:CreateDropdown("Do NPC Quests", {'All Quests', 'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.npcprefer = Option end)
-aqs:CreateDropdown("Do 2nd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.nthprefer = Option end)
+aqs:CreateDropdown("Do 2nd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.tndprefer = Option end)
+aqs:CreateDropdown("Do 3rd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.trdprefer = Option end)
 aqs:CreateToggle("Teleport To NPC", nil, function(State) kocmoc.toggles.tptonpc = State end)
 local pts = setttab:CreateSection("Autofarm Priority Tokens")
 pts:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rarename = Value end)
@@ -1503,7 +1505,7 @@ task.spawn(function() while task.wait() do
             if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
                 for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                     if v.Name == "Description" then
-                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.nthprefer) and not string.find(v.Text, "Puffshroom") then
+                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.tndprefer) or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.trdprefer) and not string.find(v.Text, "Puffshroom") then
                             pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
                             text = v.Text
                             if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
