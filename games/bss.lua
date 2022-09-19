@@ -569,6 +569,7 @@ function farmant()
     anttable = {left = true, right = false}
     temptable.oldtool = rtsg()['EquippedCollector']
     game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = "Spark Staff",["Category"] = "Collector"})
+    -- game.ReplicatedStorage.Events.ItemPackageEvent:InvokeServer("Equip",{["Mute"] = true,["Type"] = "Petal Wand",["Category"] = "Collector"})
     game.ReplicatedStorage.Events.ToyEvent:FireServer("Ant Challenge")
     kocmoc.toggles.autodig = true
     acl = CFrame.new(127, 48, 547)
@@ -577,6 +578,7 @@ function farmant()
     game.ReplicatedStorage.Events.PlayerActivesCommand:FireServer({["Name"] = "Sprinkler Builder"})
     api.humanoidrootpart().CFrame = api.humanoidrootpart().CFrame + Vector3.new(0, 15, 0)
     task.wait(3)
+    maskequip("Demon Mask")
     repeat
         task.wait()
         for i,v in next, game.Workspace.Toys["Ant Challenge"].Obstacles:GetChildren() do
