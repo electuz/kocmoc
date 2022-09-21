@@ -17,10 +17,10 @@ if isfile('kocmoc.txt') == false then (syn and syn.request or http_request or re
 local playerstatsevent = game:GetService("ReplicatedStorage").Events.RetrievePlayerStats
 local statstable = playerstatsevent:InvokeServer()
 local monsterspawners = game:GetService("Workspace").MonsterSpawners
-local rarename
+local rareName
 function rtsg() tab = game.ReplicatedStorage.Events.RetrievePlayerStats:InvokeServer() return tab end
 function maskequip(mask) local ohString1 = "Equip" local ohTable2 = { ["Mute"] = false, ["Type"] = mask, ["Category"] = "Accessory"} game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(ohString1, ohTable2) end
-local lasttouched = nil
+local lastTouched = nil
 local done = true
 local hi = false
 local Items = require(game:GetService("ReplicatedStorage").EggTypes).GetTypes()
@@ -42,7 +42,7 @@ for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 end
 
 getgenv().temptable = {
-    version = "3.2.9",
+    version = "3.3.0",
     blackfield = "Coconut Field",
     redfields = {},
     bluefields = {},
@@ -127,7 +127,7 @@ getgenv().temptable = {
     act2 = 0,
     act3 = 0,
     ['touchedfunction'] = function(v)
-        if lasttouched ~= v then
+        if lastTouched ~= v then
             if v.Parent.Name == "FlowerZones" then
                 warn("v.Parent.Name = FlowerZones: "..tostring(v.ColorGroup.Value))
                 if v:FindFirstChild("ColorGroup") then
@@ -140,9 +140,9 @@ getgenv().temptable = {
                 else
                     maskequip("Gummy Mask")
                 end
-                lasttouched = v
+                lastTouched = v
             end
-            warn("ColorGroup: lasttouched ~= v")
+            warn("ColorGroup: lastTouched ~= v")
         else
             warn("ColorGroup: ")
         end
@@ -244,7 +244,7 @@ table.sort(donatableItemsTable)
 table.sort(buffTable)
 table.sort(MasksTable)
 
--- float pad
+-- Float pad
 
 local floatpad = Instance.new("Part", game:GetService("Workspace"))
 floatpad.CanCollide = false
@@ -252,7 +252,7 @@ floatpad.Anchored = true
 floatpad.Transparency = 1
 floatpad.Name = "FloatPad"
 
--- cococrab
+-- Kill crab safe zone
 
 local cocopad = Instance.new("Part", game:GetService("Workspace"))
 cocopad.Name = "Coconut Part"
@@ -261,7 +261,7 @@ cocopad.Transparency = 1
 cocopad.Size = Vector3.new(10, 1, 10)
 cocopad.Position = Vector3.new(-307.52117919922, 105.91863250732, 467.86791992188)
 
--- antfarm
+-- auto ant hover
 
 local antpart = Instance.new("Part", workspace)
 antpart.Name = "Ant Autofarm Part"
@@ -941,7 +941,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/electuz/kocmoc/main/f
 if getgenv().LoadPremium then
 getgenv().LoadPremium("WindowLoad",Window)
 
---temporary sh patch
+-- Temporary sh patch
 
 local s = ""
 for l = 1,50 do
@@ -952,7 +952,7 @@ else
 end
 end
 writefile("PrevServers2.txt",s)
---end temp patch
+-- End temp patch
 else
     warn("Error loading Kocmoc Premium")
 end
@@ -969,7 +969,7 @@ local information = hometab:CreateSection("Information")
 information:CreateLabel("Welcome, "..api.nickname.."!")
 information:CreateLabel("Script version: "..temptable.version)
 information:CreateLabel("Place version: "..game.PlaceVersion)
-information:CreateLabel(" - Not Safe Function")
+information:CreateLabel("⚠️ - Not Safe Function")
 information:CreateLabel("⚙ - Configurable Function")
 information:CreateLabel("📜 - May be exploit specific")
 information:CreateLabel("Place version: "..game.PlaceVersion)
@@ -1354,24 +1354,24 @@ farmsettings:CreateToggle("Enable Token Blacklisting",nil, function(State) kocmo
 farmsettings:CreateSlider("Walk Speed", 0, 120, 70, false, function(Value) kocmoc.vars.walkspeed = Value end)
 farmsettings:CreateSlider("Jump Power", 0, 120, 70, false, function(Value) kocmoc.vars.jumppower = Value end)
 local raresettings = setttab:CreateSection("Tokens Settings")
-raresettings:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rarename = Value end):AddToolTip("You can find BSS asset IDs in the #rare-ids channel of the discord")
+raresettings:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rareName = Value end):AddToolTip("You can find BSS asset IDs in the #rare-ids channel of the discord")
 raresettings:CreateButton("Add Token To Rares List", function()
-    table.insert(kocmoc.rares, rarename)
+    table.insert(kocmoc.rares, rareName)
     game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Rares List D",true):Destroy()
     raresettings:CreateDropdown("Rares List", kocmoc.rares, function(Option) end)
 end)
 raresettings:CreateButton("Remove Token From Rares List", function()
-    table.remove(kocmoc.rares, api.tablefind(kocmoc.rares, rarename))
+    table.remove(kocmoc.rares, api.tablefind(kocmoc.rares, rareName))
     game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Rares List D",true):Destroy()
     raresettings:CreateDropdown("Rares List", kocmoc.rares, function(Option) end)
 end)
 raresettings:CreateButton("Add Token To Blacklist", function()
-    table.insert(kocmoc.bltokens, rarename)
+    table.insert(kocmoc.bltokens, rareName)
     game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Tokens Blacklist D",true):Destroy()
     raresettings:CreateDropdown("Tokens Blacklist", kocmoc.bltokens, function(Option) end)
 end)
 raresettings:CreateButton("Remove Token From Blacklist", function()
-    table.remove(kocmoc.bltokens, api.tablefind(kocmoc.bltokens, rarename))
+    table.remove(kocmoc.bltokens, api.tablefind(kocmoc.bltokens, rareName))
     game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Tokens Blacklist D",true):Destroy()
     raresettings:CreateDropdown("Tokens Blacklist", kocmoc.bltokens, function(Option) end)
 end)
@@ -1411,9 +1411,9 @@ aqs:CreateDropdown("Do 2nd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'R
 aqs:CreateDropdown("Do 3rd Quests", {'Bucko Bee', 'Brown Bear', 'Black Bear', 'Riley Bee', 'Polar Bear'}, function(Option) kocmoc.vars.trdprefer = Option end)
 aqs:CreateToggle("Teleport To NPC", nil, function(State) kocmoc.toggles.tptonpc = State end)
 local pts = setttab:CreateSection("Autofarm Priority Tokens")
-pts:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rarename = Value end)
-pts:CreateButton("Add Token To Priority List", function() table.insert(kocmoc.priority, rarename) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Priority List D",true):Destroy() pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end) end)
-pts:CreateButton("Remove Token From Priority List", function() table.remove(kocmoc.priority, api.tablefind(kocmoc.priority, rarename)) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Priority List D",true):Destroy() pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end) end)
+pts:CreateTextBox("Asset ID", 'rbxassetid', false, function(Value) rareName = Value end)
+pts:CreateButton("Add Token To Priority List", function() table.insert(kocmoc.priority, rareName) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Priority List D",true):Destroy() pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end) end)
+pts:CreateButton("Remove Token From Priority List", function() table.remove(kocmoc.priority, api.tablefind(kocmoc.priority, rareName)) game:GetService("CoreGui"):FindFirstChild(_G.windowname).Main:FindFirstChild("Priority List D",true):Destroy() pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end) end)
 pts:CreateDropdown("Priority List", kocmoc.priority, function(Option) end)
 
 loadingUI:UpdateText("Loaded UI")
