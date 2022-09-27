@@ -493,6 +493,9 @@ function killmobs()
                     mfd = game:GetService("Workspace").FlowerZones["Pumpkin Patch"]
                     api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
                     task.wait(3)
+                    mfd = game:GetService("Workspace").FlowerZones["Cactus Field"]
+                    api.humanoidrootpart().CFrame = CFrame.new(mfd.Position.X, mfd.Position.Y, mfd.Position.Z)
+                    task.wait(3)
                     for i = 1, 4 do gettoken(monsterpart.Position) end
                 elseif v.Name:match("ForestMantis1") then
                     mfd = game:GetService("Workspace").FlowerZones["Cactus Field"]
