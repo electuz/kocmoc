@@ -352,7 +352,7 @@ getgenv().kocmoc = {
         jumppower = 70,
         npcprefer = "Polar Bear",
         tndprefer = "Black Bear",
-        trdprefer = "Bucko Bear",
+        trdprefer = "Brown Bear",
         farmtype = "Walk",
         monstertimer = 3,
         balloontimer = 1,
@@ -1528,7 +1528,7 @@ task.spawn(function() while task.wait() do
             if kocmoc.toggles.autodoquest and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests.Content:FindFirstChild("Frame") then
                 for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Menus.Children.Quests:GetDescendants() do
                     if v.Name == "Description" then
-                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.tndprefer) or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.trdprefer) and not string.find(v.Text, "Puffshroom") then
+                        if string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.npcprefer) or kocmoc.vars.npcprefer == "All Quests" or string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.tndprefer) and not string.match(v.Parent.Parent.TitleBar.Text, kocmoc.vars.trdprefer) and not string.find(v.Text, "Puffshroom") then
                             pollentypes = {'White Pollen', "Red Pollen", "Blue Pollen", "Blue Flowers", "Red Flowers", "White Flowers"}
                             text = v.Text
                             if api.returnvalue(fieldstable, text) and not string.find(v.Text, "Complete!") and not api.findvalue(kocmoc.blacklistedfields, api.returnvalue(fieldstable, text)) then
