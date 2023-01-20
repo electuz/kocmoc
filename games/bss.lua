@@ -1775,7 +1775,7 @@ task.spawn(function()
 			for i,v in next, game.workspace.Particles:GetChildren() do
 				for x in string.gmatch(v.Name, "Vicious") do
                     while kocmoc.toggles.killvicious and temptable.detected.vicious do task.wait() if string.find(v.Name, "Vicious") then
-                        for i=1, 4 do temptable.float = false vichumanoid.CFrame = CFrame.new(v.Position.x, v.Position.y, v.Position.z) task.wait(.3)
+                        for i=1, 4 do temptable.float = true vichumanoid.CFrame = CFrame.new(v.Position.x+10, v.Position.y, v.Position.z) task.wait(.3)
                         end
                     end end
                 end
@@ -1816,7 +1816,7 @@ task.spawn(function() while task.wait() do
             if not awb then api.tween(1,temptable.gacf(temptable.windy, 5)) task.wait(1) awb = true end
             for i =1, 5 do gettoken(api.humanoidrootpart().Position) end
             if awb and temptable.windy.Name == "Windy" then
-                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = false task.wait()
+                api.humanoidrootpart().CFrame = temptable.gacf(temptable.windy, 25) temptable.float = true task.wait()
             end
         end 
         enableall()
