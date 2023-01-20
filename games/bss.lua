@@ -277,9 +277,9 @@ getgenv().kocmoc = {
     rares = {},
     priority = {},
     bestfields = {
-        red = "Stump Field",
-        white = "Stump Field",
-        blue = "Stump Field"
+        red = "Rose Field",
+        white = "Spider Field",
+        blue = "Pine Tree Field"
     },
     blacklistedfields = {},
     killerkocmoc = {},
